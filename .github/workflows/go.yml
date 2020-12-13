@@ -14,5 +14,8 @@ jobs:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Test
-      run: go test ./...
+    - name: Test With Coverage
+      run: go test -v  -coverprofile=coverage.txt -covermode=atomic ./...
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+

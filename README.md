@@ -10,6 +10,12 @@ You can also define a `TICK` in second which specifies in which interval the exp
 
 The exporter will listen by default on port 9898 which can be changed by defining an environment variable `PORT`.
 
+### Docker
+The exporter can also be run as a docker container like
+```
+docker run --rm -p 9898:9898 -e HOST={ID_ADDRESS chrisdoc/homewizard-p1-prometheus:latest
+```
+
 ## Exported Data
 The exporter exposes the following data to Prometheus
 ```

@@ -29,7 +29,8 @@ func Start() {
 
 	cfg := config{}
 	if err := env.Parse(&cfg); err != nil {
-		log.Fatalf("%+v\n", err)
+		log.Fatalf("Error parsing environment variables %+v\n", err)
+
 	}
 
 	finish := make(chan bool)
@@ -37,7 +38,10 @@ func Start() {
 	go func() {
 		http.Handle("/metrics", promhttp.Handler())
 		listenAddress := fmt.Sprintf("0.0.0.0:%d", cfg.Port)
-		http.ListenAndServe(listenAddress, nil)
+		err := http.ListenAndServe(listenAddress, nil)
+		if err != nil {
+			log.Fatalf("Error starting metrics server %+v\n", err)
+		}
 	}()
 
 	go func() {
@@ -47,18 +51,22 @@ func Start() {
 	<-finish
 }
 
-func homeWizardsTask(cfg config, exporter exporter.Prometheus) {
+func homeWizardsTask(cfg config, exporter exporter.Prometheus) error {
 	client := homewizard.NewP1Client(cfg.Host)
 	home, err := client.Retrieve()
 	if err != nil {
-		return
+		return err
 	}
 	exporter.SetData(home)
+	return nil
 }
 
 func executeCronJob(cfg config) {
 	s := gocron.NewScheduler()
-	exporter := exporter.Prometheus{}
-	s.Every(cfg.Tick).Second().Do(homeWizardsTask, cfg, exporter)
+	prometheus := exporter.Prometheus{}
+	err := s.Every(cfg.Tick).Second().Do(homeWizardsTask, cfg, prometheus)
+	if err != nil {
+		log.Errorf("Error executing cron job %+v\n", err)
+	}
 	<-s.Start()
 }

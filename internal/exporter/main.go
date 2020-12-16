@@ -43,7 +43,7 @@ var (
 		Name: "active_power_l3_w",
 		Help: "The active power on L3 in W",
 	})
-	totaGasM3 = promauto.NewGauge(prometheus.GaugeOpts{
+	totalGasM3 = promauto.NewGauge(prometheus.GaugeOpts{
 		Name: "total_gas_m3",
 		Help: "The total gas consumption in m3",
 	})
@@ -67,5 +67,5 @@ func (p *Prometheus) SetData(home *homewizard.Data) {
 	activePowerL2W.Set(home.ActivePowerL2W)
 	activePowerL3W.Set(home.ActivePowerL3W)
 
-	totaGasM3.Set(home.TotalGasM3)
+	totalGasM3.Set(home.TotalGasM3)
 }

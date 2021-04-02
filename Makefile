@@ -22,7 +22,7 @@ lint: golint vet
 
 .PHONY: test
 test: lint
-	go test -race ./...
+	go test -race -cover ./...
 
 .PHONY: clean
 clean:

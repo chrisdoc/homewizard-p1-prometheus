@@ -58,7 +58,7 @@ func (p *Prometheus) SetData(home *homewizard.Data) {
 
 	totalPowerImportT1Kwh.Set(home.TotalPowerImportT1Kwh)
 	totalPowerImportT2Kwh.Set(home.TotalPowerImportT2Kwh)
-	totalPowerExportT1Kwh.Set(home.TotalPowerExportT2Kwh)
+	totalPowerExportT1Kwh.Set(home.TotalPowerExportT1Kwh)
 	totalPowerExportT2Kwh.Set(home.TotalPowerExportT2Kwh)
 
 	activePowerW.Set(home.ActivePowerW)

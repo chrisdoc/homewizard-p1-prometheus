@@ -1,7 +1,13 @@
 FROM golang:1.20 as builder
 WORKDIR /go/src/github.com/chrisdoc/homewizard-p1-prometheus/
+
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+
+RUN go mod download
+RUN go vet -v
+RUN go test -v
+
+RUN CGO_ENABLED=0 go build -o /go/bin/app
 
 FROM gcr.io/distroless/static:nonroot
 COPY --from=builder /go/src/github.com/chrisdoc/homewizard-p1-prometheus/app .

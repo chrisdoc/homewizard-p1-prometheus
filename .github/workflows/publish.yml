@@ -26,7 +26,8 @@ jobs:
         with:
           images: chriskies/homewizard-p1-prometheus
           tags: |
-            type=ref,event=tag
+            type=ref,event=branch
+            type=ref,event=pr
 
       - name: Set up Docker Buildx
         id: buildx

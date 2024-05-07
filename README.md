@@ -2,7 +2,7 @@
 > A [Prometheus](https://prometheus.io/) exporter for the [Homewizard P1 energy monitor](https://www.homewizard.nl/homewizard-wi-fi-p1-meter)
 ## Running the exporter
 To run the application you need to specify the IP address of the P1 meter in your network as an environment variable `HOST`
-```
+```sh
 HOST={IP_ADDRESS} go run main.go
 ```
 
@@ -12,7 +12,7 @@ The exporter will listen by default on port 9898 which can be changed by definin
 
 ### Docker
 The exporter can also be run as a docker container like
-```
+```sh
 docker run --rm -p 9898:9898 -e HOST={ID_ADDRESS} chriskies/homewizard-p1-prometheus:latest
 ```
 

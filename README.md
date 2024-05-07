@@ -13,7 +13,7 @@ The exporter will listen by default on port 9898 which can be changed by definin
 ### Docker
 The exporter can also be run as a docker container like
 ```
-docker run --rm -p 9898:9898 -e HOST={ID_ADDRESS chrisdoc/homewizard-p1-prometheus:latest
+docker run --rm -p 9898:9898 -e HOST={ID_ADDRESS} chrisdoc/homewizard-p1-prometheus:latest
 ```
 
 ## Exported Data

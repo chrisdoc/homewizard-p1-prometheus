@@ -1,7 +1,6 @@
 .git
 .github
 Dockerfile
-README.md
 LICENSE
 Makefile
 *.md

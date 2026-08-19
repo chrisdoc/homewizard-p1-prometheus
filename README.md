@@ -1,3 +1,5 @@
+
+
 # homewizard-p1-prometheus
 > A [Prometheus](https://prometheus.io/) exporter for the [Homewizard P1 energy monitor](https://www.homewizard.nl/homewizard-wi-fi-p1-meter)
 ## Running the exporter
@@ -13,7 +15,7 @@ The exporter will listen by default on port 9898 which can be changed by definin
 ### Docker
 The exporter can also be run as a docker container like
 ```sh
-docker run --rm -p 9898:9898 -e HOST={ID_ADDRESS} chriskies/homewizard-p1-prometheus:latest
+docker run --rm -p 9898:9898 -e HOST={IP_ADDRESS} chriskies/homewizard-p1-prometheus:latest
 ```
 
 ## Exported Data
